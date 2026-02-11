@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Wake Career Ask - 社内質問受付アプリ",
+  title: "Ask Base - 社内質問受付アプリ",
   description: "社内向け質問受付アプリケーション",
 };
 
