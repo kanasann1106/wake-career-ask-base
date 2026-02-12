@@ -1,6 +1,8 @@
 import { redirect, notFound } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import Link from 'next/link'
+import AnswerForm from '@/components/questions/AnswerForm'
+import AnswerCard from '@/components/questions/AnswerCard'
 
 export default async function QuestionDetailPage({
   params,
@@ -28,6 +30,13 @@ export default async function QuestionDetailPage({
   if (error || !question) {
     notFound()
   }
+
+  // 回答を取得
+  const { data: answers } = await supabase
+    .from('answers')
+    .select('*')
+    .eq('question_id', id)
+    .order('created_at', { ascending: false })
 
   // 投稿日時のフォーマット
   const formatDate = (dateString: string) => {
@@ -65,6 +74,29 @@ export default async function QuestionDetailPage({
             <p className="text-gray-800 whitespace-pre-wrap text-lg leading-relaxed">
               {question.body}
             </p>
+          </div>
+        </div>
+
+        {/* 回答セクション */}
+        <div className="mt-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            回答（{answers?.length || 0}件）
+          </h2>
+
+          {/* 回答フォーム */}
+          <AnswerForm questionId={id} />
+
+          {/* 回答リスト */}
+          <div className="space-y-4">
+            {answers && answers.length > 0 ? (
+              answers.map((answer) => (
+                <AnswerCard key={answer.id} answer={answer} />
+              ))
+            ) : (
+              <div className="bg-white shadow-md rounded-lg px-8 py-6 text-center">
+                <p className="text-gray-600">まだ回答がありません</p>
+              </div>
+            )}
           </div>
         </div>
       </div>
