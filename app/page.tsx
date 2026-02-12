@@ -23,6 +23,12 @@ export default async function Home() {
             </p>
             <div className="space-x-4">
               <a
+                href="/questions"
+                className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition"
+              >
+                質問一覧
+              </a>
+              <a
                 href="/dashboard"
                 className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition"
               >

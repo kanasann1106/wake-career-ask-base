@@ -53,6 +53,12 @@ export default async function ProfilePage() {
             <h2 className="text-xl font-semibold text-gray-800 mb-4">ナビゲーション</h2>
             <div className="space-x-4">
               <a
+                href="/questions"
+                className="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+              >
+                質問一覧
+              </a>
+              <a
                 href="/dashboard"
                 className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
               >
